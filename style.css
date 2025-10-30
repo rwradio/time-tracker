@@ -222,6 +222,35 @@ h1 {
     outline: none;
 }
 
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.setting-row label {
+    margin-bottom: 0; /* Override default margin */
+}
+
+.auto-switch {
+    display: flex;
+    align-items: center;
+}
+
+.auto-switch label {
+    margin-left: 8px;
+    font-weight: normal; /* Lighter font for this label */
+    color: var(--light-text-color);
+}
+
+#rest-duration {
+    margin-top: -10px;
+}
+
 
 
 .play-button-container {

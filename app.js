@@ -5,6 +5,7 @@ const pauseButton = document.getElementById('pause-button');
 const resetButton = document.getElementById('reset-button');
 const workDurationInput = document.getElementById('work-duration');
 const restDurationInput = document.getElementById('rest-duration');
+const autoRestCheckbox = document.getElementById('auto-rest-checkbox');
 const stepDurationSelect = document.getElementById('step-duration');
 const hourlyRateInput = document.getElementById('hourly-rate');
 const timerProgress = document.querySelector('.timer-progress');
@@ -49,6 +50,7 @@ function saveSettings() {
     const settings = {
         workDuration: workDurationInput.value,
         restDuration: restDurationInput.value,
+        autoRest: autoRestCheckbox.checked,
         stepDuration: stepDurationSelect.value,
         hourlyRate: hourlyRateInput.value
     };
@@ -60,6 +62,7 @@ function loadSettings() {
     if (settings) {
         workDurationInput.value = settings.workDuration || '25';
         restDurationInput.value = settings.restDuration || '5';
+        autoRestCheckbox.checked = settings.autoRest || false;
         stepDurationSelect.value = settings.stepDuration || '5';
         hourlyRateInput.value = settings.hourlyRate || '10';
     }
@@ -174,6 +177,9 @@ function switchMode() {
         updateModeDisplay('rest');
         timerProgress.style.stroke = '#2196F3'; // Blue for rest
         showPlayButton();
+        if (autoRestCheckbox.checked) {
+            startTimer();
+        }
     } else {
         currentMode = 'work';
         timeLeft = workDuration;
@@ -261,6 +267,7 @@ startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', pauseTimer);
 resetButton.addEventListener('click', resetTimer);
 finishWorkButton.addEventListener('click', finishWork);
+autoRestCheckbox.addEventListener('change', saveSettings);
 
 playPauseButton.addEventListener('click', () => {
     if (isRadioPlaying) {

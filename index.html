@@ -50,11 +50,18 @@
                 <label for="work-duration">Работать до перерыва:</label>
                 <select id="work-duration"></select>
 
-                <label for="rest-duration">Перерыв:</label>
+                <div class="setting-row">
+                    <label for="rest-duration">Перерыв:</label>
+                    <div class="auto-switch">
+                        <input type="checkbox" id="auto-rest-checkbox">
+                        <label for="auto-rest-checkbox">Авто</label>
+                    </div>
+                </div>
                 <select id="rest-duration">
-                    <option value="5">2 минуты</option>
-                    <option value="10">5 минут</option>
-                    <option value="15">10 минут</option>
+                    <option value="2">2 минуты</option>
+                    <option value="5">5 минут</option>
+                    <option value="10">10 минут</option>
+                    <option value="15">15 минут</option>
                 </select>
 
                 <label for="step-duration">Округление итога:</label>

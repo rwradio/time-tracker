@@ -6,6 +6,7 @@ const resetButton = document.getElementById('reset-button');
 const workDurationInput = document.getElementById('work-duration');
 const restDurationInput = document.getElementById('rest-duration');
 const autoRestCheckbox = document.getElementById('auto-rest-checkbox');
+const paidRestCheckbox = document.getElementById('paid-rest-checkbox');
 const stepDurationSelect = document.getElementById('step-duration');
 const hourlyRateInput = document.getElementById('hourly-rate');
 const timerProgress = document.querySelector('.timer-progress');
@@ -51,6 +52,7 @@ function saveSettings() {
         workDuration: workDurationInput.value,
         restDuration: restDurationInput.value,
         autoRest: autoRestCheckbox.checked,
+        paidRest: paidRestCheckbox.checked,
         stepDuration: stepDurationSelect.value,
         hourlyRate: hourlyRateInput.value
     };
@@ -63,6 +65,7 @@ function loadSettings() {
         workDurationInput.value = settings.workDuration || '25';
         restDurationInput.value = settings.restDuration || '5';
         autoRestCheckbox.checked = settings.autoRest || false;
+        paidRestCheckbox.checked = settings.paidRest || false;
         stepDurationSelect.value = settings.stepDuration || '5';
         hourlyRateInput.value = settings.hourlyRate || '10';
     }
@@ -219,7 +222,7 @@ function startTimer() {
             switchMode();
             return;
         }
-        if (currentMode === 'work') {
+        if (currentMode === 'work' || (currentMode === 'rest' && paidRestCheckbox.checked)) {
             totalWorkTime++;
         }
         timeLeft--;
@@ -253,7 +256,7 @@ function finishWork() {
     const cost = (hoursWorked * hourlyRate).toFixed(2);
 
     updateModeDisplay('finished');
-    lastSessionDisplay.textContent = `Итого: ${formatAccumulatedTime(finalRoundedTotal)} ($${cost})`;
+    lastSessionDisplay.textContent = `Итого: ${formatAccumulatedTime(finalRoundedTotal)} $${cost}`;
     
     totalWorkTime = 0;
     currentMode = 'work';
@@ -268,6 +271,7 @@ pauseButton.addEventListener('click', pauseTimer);
 resetButton.addEventListener('click', resetTimer);
 finishWorkButton.addEventListener('click', finishWork);
 autoRestCheckbox.addEventListener('change', saveSettings);
+paidRestCheckbox.addEventListener('change', saveSettings);
 
 playPauseButton.addEventListener('click', () => {
     if (isRadioPlaying) {

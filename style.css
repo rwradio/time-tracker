@@ -199,7 +199,7 @@ h1 {
     text-align: left;
     width: calc(100% - 20px);
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 10px;
 }
 
 .settings input[type="number"],
@@ -245,6 +245,10 @@ h1 {
     margin-left: 8px;
     font-weight: normal; /* Lighter font for this label */
     color: var(--light-text-color);
+}
+
+#paid-rest-checkbox {
+    margin-left: 15px;
 }
 
 #rest-duration {

@@ -1,0 +1,326 @@
+:root {
+    --primary-color: #4CAF50; /* Green for work */
+    --secondary-color: #2196F3; /* Blue for rest */
+    --background-color: #ffffff;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --light-text-color: #666666;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px; /* Fixed width */
+    transition: all 0.3s ease;
+}
+
+/* View switching logic */
+.settings-container {
+    display: none; /* Hidden by default */
+}
+
+.container.settings-active .main-view {
+    display: none;
+}
+
+.container.settings-active .settings-container {
+    display: block;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 5px; /* Adjusted margin */
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.last-session-display {
+    font-size: 1.0em;
+    color: var(--light-text-color);
+    margin-bottom: 25px; /* Space below it */
+    min-height: 1.2em; /* Reserve space even if empty */
+}
+
+.timer-container {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 40px auto;
+}
+
+.timer-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.timer-background {
+    fill: none;
+    stroke: var(--border-color);
+    stroke-width: 10px;
+}
+
+.timer-progress {
+    fill: none;
+    stroke: var(--primary-color); /* Green for work */
+    stroke-width: 10px;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s linear, stroke 0.3s ease;
+}
+
+.timer-text {
+    position: absolute;
+    top: 50%; /* Centered vertically */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.controls button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 0px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+#finish-work-button {
+    background-color: #607D8B; /* Grey for finish work */
+}
+
+#finish-work-button:hover {
+    background-color: #455A64;
+}
+
+.controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#pause-button {
+    background-color: #FFC107; /* Amber for pause */
+}
+
+#pause-button:hover {
+    background-color: #FFA000;
+}
+
+#reset-button {
+    background-color: #F44336; /* Red for reset */
+}
+
+#reset-button:hover {
+    background-color: #D32F2F;
+}
+
+#toggle-settings-button {
+    background-color: var(--light-text-color);
+}
+
+#toggle-settings-button:hover {
+    background-color: #444444;
+}
+
+#back-button {
+    /* Base styles from .controls button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    /* Unique styles */
+    background-color: var(--light-text-color);
+    margin-top: 20px;
+    width: calc(100% - 20px);
+    margin-left: auto; /* Center it */
+    margin-right: auto; /* Center it */
+    display: block;
+}
+
+#back-button:hover {
+    background-color: #444444;
+    transform: translateY(-2px);
+}
+
+#back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.settings {
+    padding-top: 10px;
+}
+
+.settings h2 {
+    color: var(--text-color);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--light-text-color);
+    text-align: left;
+    width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settings input[type="number"],
+.settings select {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+.settings input[type="number"]:focus,
+.settings select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+
+
+.play-button-container {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+}
+
+#play-pause-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height:30px;
+    padding: 0;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#play-pause-button svg {
+    width: 30px;
+    height: 30px;
+    color: var(--text-color);
+    stroke: var(--text-color);
+}
+
+#radio-station-name {
+    font-size: 0.8em;
+    color: var(--light-text-color);
+    /* margin-bottom: 5px; */
+}
+
+.mode-icon {
+    height: 1em;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+#work-mode-icon {
+    position: absolute;
+    top: 31%;
+    left: 50%;
+    transform: translate(-80%, -50%);
+    height: 2.1em;
+    display: none;
+}
+
+#ruby-icon {
+    position: absolute;
+    top: 69%;
+    left: 50%;
+    transform: translate(-70%, -50%);
+    height: 1.5em;
+    display: none;
+}
+
+#wine-icon {
+    position: absolute;
+    top: 31%;
+    left: 50%;
+    transform: translate(-70%, -50%);
+    height: 2.5em;
+    display: none;
+}
+.controls {
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    gap: 12px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 10px;
+}
+
+.controls button {
+    width: 130px;
+}
+
+.controls button:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 130px;
+}
+
+html, body {
+    min-width: 300px;      /* ширина не меньше контейнера */
+    min-height: 400px;     /* чтобы нельзя было сжать по вертикали */
+    overflow: hidden;      /* убираем полосы прокрутки */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;         /* центрируем контейнер по вертикали */
+    margin: 0;
+}

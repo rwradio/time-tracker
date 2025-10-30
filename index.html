@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тайм-трекер</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icons/icon-512x512.png">
+</head>
+<body>
+    <div class="container">
+        <div class="main-view">
+            <h1 id="mode-display">Работаем</h1>
+            <div class="last-session-display" id="last-session-display"></div>
+
+            <div class="timer-container">
+                <svg class="timer-svg" viewBox="0 0 100 100">
+                    <circle class="timer-background" cx="50" cy="50" r="45"></circle>
+                    <circle class="timer-progress" cx="50" cy="50" r="45"></circle>
+                </svg>
+                <img id="work-mode-icon" src="icons/icon_work.png" alt="Work Icon" class="mode-icon">
+                <img id="ruby-icon" src="icons/icon_ruby.png" alt="Ruby Icon" class="mode-icon">
+                <img id="wine-icon" src="icons/icon_wine.png" alt="Wine Icon" class="mode-icon">
+                <div class="timer-text" id="time-display">25:00</div>
+                <div class="play-button-container" id="play-button-container">
+                    <div id="radio-station-name">Red Wine Radio</div>
+                    <button id="play-pause-button">
+                        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="start-button">Старт</button>
+                <button id="pause-button">Пауза</button>
+                <button id="reset-button">Сброс</button>
+                <button id="finish-work-button">Закончить</button>
+                <button id="toggle-settings-button">Настройки</button>
+            </div>
+        </div>
+
+        <div class="settings-container hidden">
+            <div class="settings">
+                <h2>Настройки</h2>
+                <label for="work-duration">Работать до перерыва:</label>
+                <select id="work-duration"></select>
+
+                <label for="rest-duration">Перерыв:</label>
+                <select id="rest-duration">
+                    <option value="5">2 минуты</option>
+                    <option value="10">5 минут</option>
+                    <option value="15">10 минут</option>
+                </select>
+
+                <label for="step-duration">Округление итога:</label>
+                <select id="step-duration">
+                    <option value="1">1 минута</option>
+                    <option value="5" selected>5 минут</option>
+                    <option value="10">10 минут</option>
+                    <option value="15">15 минут</option>
+                </select>
+
+                <label for="hourly-rate">Стоимость часа ($):</label>
+                <input type="number" id="hourly-rate" value="10" min="0">
+
+                <button id="back-button">Назад</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="radio-player"></audio>
+    <audio id="timer-end-sound" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/success.mp3" preload="auto"></audio>
+    <script src="app.js"></script>
+</body>
+</html>

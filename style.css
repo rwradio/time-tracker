@@ -22,8 +22,9 @@ body {
 
 .container {
     background-color: var(--card-background);
-    padding: 20px;
-    border-radius: 20px;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 40px;
     text-align: center;
     width: 300px; /* Fixed width */
     transition: all 0.3s ease;

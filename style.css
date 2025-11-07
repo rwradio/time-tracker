@@ -11,9 +11,6 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -28,6 +25,7 @@ body {
     text-align: center;
     width: 300px; /* Fixed width */
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 /* View switching logic */
@@ -345,16 +343,29 @@ h1 {
     width: 130px;
 }
 
-html, body {
-    min-width: 300px;      /* ширина не меньше контейнера */
-    min-height: 400px;     /* чтобы нельзя было сжать по вертикали */
-    overflow: hidden;      /* убираем полосы прокрутки */
+html {
+    height: 100%;
+    min-width: 0; /* allow shrinking below default min */
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;         /* центрируем контейнер по вертикали */
+    width: 300px;
+    height: 634px;
     margin: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    width: 300px;
+    height: 634px;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 40px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
 }

@@ -39,7 +39,7 @@ let audioUnlocked = false; // Flag to track if audio is unlocked
 let totalWorkTime = 0; // in seconds, for accumulated work time
 
 // Radio Player Variables
-const radioStreamUrl = 'https://stream.zeno.fm/pcbduafehg0uv';
+const radioStreamUrl = 'https://stream.zeno.fm/pcbduafehg0uv.m3u';
 radioPlayer.src = radioStreamUrl;
 let isRadioPlaying = false;
 
